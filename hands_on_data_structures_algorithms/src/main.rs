@@ -1,3 +1,17 @@
+use std::io;
+
 fn main() {
-    println!("Hello, world!");
+    let mut input = String::new();
+    io::stdin()
+        .read_line(&mut input)
+        .expect("Faild to reada line");
+
+    let input = input.trim();
+
+    let lett: String = input
+        .split('-')
+        .map(|word| word.chars().next().unwrap())
+        .collect();
+
+    println!("{}", lett);
 }
