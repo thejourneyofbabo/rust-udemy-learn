@@ -1,19 +1,27 @@
-#[derive(Debug)]
-pub enum Res<T, E> {
-    Thing(T),
-    Error(E),
+//#[derive(Debug)]
+//pub enum Res<T, E> {
+//    Thing(T),
+//    Error(E),
+//}
+
+pub enum Option<T> {
+    Some(T),
+    None,
 }
 
 fn main() {
-    let a = divide(4, 5);
+    let a = divide(10, 5);
     let b = divide(10, 0);
 
+    if let Ok(v) = a {
+        println!("val = {}", v);
+    }
     println!("a = {:?}, b = {:?}", a, b);
 }
 
-fn divide(a: i32, b: i32) -> Res<i32, String> {
+fn divide(a: i32, b: i32) -> Result<i32, String> {
     if b == 0 {
-        return Res::Error("Cannot Divide by zero".to_string());
+        return Err("Cannot Divide by zero".to_string());
     }
-    Res::Thing(a / b)
+    Ok(a / b)
 }
