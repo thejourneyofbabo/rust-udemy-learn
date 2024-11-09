@@ -45,7 +45,7 @@ pub fn bubble_sort_fb<T: PartialOrd + Debug>(v: &mut [T]) {
         }
 
         right -= 1;
-        swapped = false;
+        //swapped = false;
 
         // Backward pass
         for i in (left..right).rev() {
@@ -65,11 +65,34 @@ mod tests {
     #[test]
     fn test_bubble_sort() {
         let mut v = vec![4, 6, 1, 8, 11, 13, 3, 2];
-        bubble_sort(&mut v);
-        println!("\n");
         let mut v2 = vec![4, 6, 1, 8, 11, 13, 3, 2];
+        let mut v3 = vec![
+            20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1,
+        ];
+        let mut v4 = vec![
+            20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1,
+        ];
+
+        println!("Regular Bubble Sort");
+        bubble_sort(&mut v);
+        println!("\nBidirectional Bubble Sort");
         bubble_sort_fb(&mut v2);
+        println!(" ");
+
+        println!("Regular Bubble Sort");
+        bubble_sort(&mut v3);
+        println!("\nBidirectional Bubble Sort");
+        bubble_sort_fb(&mut v4);
+
         assert_eq!(v, vec![1, 2, 3, 4, 6, 8, 11, 13]);
         assert_eq!(v2, vec![1, 2, 3, 4, 6, 8, 11, 13]);
+        assert_eq!(
+            v3,
+            vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+        );
+        assert_eq!(
+            v4,
+            vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+        );
     }
 }
