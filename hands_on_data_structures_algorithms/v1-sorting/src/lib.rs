@@ -64,11 +64,12 @@ pub fn merge_sort<T: PartialOrd + Debug>(mut v: Vec<T>) -> Vec<T> {
     // 1024 * 10 < 1024 * 1024
     // bring the sorted halfs together O(n)
 
+    println!("MS:{:?}", v);
     if v.len() <= 1 {
         return v;
     }
 
-    let mut res = Vec::with_capacity(v.len());
+    let mut res = Vec::with_capacity(v.len()); // Result Vector
     let b = v.split_off(v.len() / 2);
     let a = merge_sort(v);
     let b = merge_sort(b);
